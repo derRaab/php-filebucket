@@ -1,4 +1,4 @@
-# php-filembucket
+# php-filebucket
 
 A very basic PHP based temporary file storage API.
 

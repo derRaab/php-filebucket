@@ -95,8 +95,18 @@ if (!in_array($request_token, $job_allowed_tokens)) {
 }
 
 
-header('HTTP/1.0 200 OK');
-echo("You are authorized to do the job.");
-exit;
+
+
+// Execute jobs
+if ($job_type == JOB_TYPE_DOWNLOAD) {
+    include('job_download.php');
+} else if ($job_type == JOB_TYPE_UPLOAD) {
+    include('job_upload.php'); 
+}
+else {
+    header('HTTP/1.0 501 Not Implemented');
+    echo("Job not implemented");
+    exit;
+}
 
 ?>

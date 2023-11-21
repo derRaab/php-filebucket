@@ -70,7 +70,14 @@ $target_file = FILES_DIR . '/' . $target_filename;
 
 
 // Move the uploaded file to the target location
-move_uploaded_file($file_1_tmp_name, $target_file);
+if (!move_uploaded_file($file_1_tmp_name, $target_file)) {
+  mkdir(FILES_DIR, 0777, true);
+  if (!move_uploaded_file($file_1_tmp_name, $target_file)) {
+    header('HTTP/1.0 500 Internal Server Error');
+    echo("Failed to move uploaded file");
+    exit;
+  }
+}
 
 
 

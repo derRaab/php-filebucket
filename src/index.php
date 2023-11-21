@@ -4,20 +4,16 @@
 
 
 // Constants
-const DOTENV_DOWNLOAD_TOKENS = 'DOWNLOAD_TOKENS';
-const DOTENV_UPLOAD_TOKENS = 'UPLOAD_TOKENS';
-
-const JOB_TYPE_DOWNLOAD = 'download';
-const JOB_TYPE_UPLOAD = 'upload';
+include_once('constants.php');
 
 
 
 
 // Check if a supported job type is set
-$job_type = $_POST['job_type'];
+$job_type = $_POST[POST_JOB_TYPE];
 if($job_type != JOB_TYPE_DOWNLOAD && $job_type != JOB_TYPE_UPLOAD) {
     header('HTTP/1.0 400 Bad Request');
-    echo("Invalid job_type");
+    echo("Invalid job type");
     exit;
 }
 

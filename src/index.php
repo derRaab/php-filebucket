@@ -59,44 +59,34 @@ if($request_token == null) {
 
 
 
-// Read .env values
-$env_path = dirname(__FILE__) . "/../.env";
-if (!is_readable($env_path)) {
+// Constants
+include_once('access.php');
+
+// Check for an existing access setup
+if(!defined('ACCESS_TOKENS')) {
     header('HTTP/1.0 500 Internal Server Error');
-    echo("Cannot read .env file");
+    echo("Invalid access setup");
     exit;
 }
-$lines = file($env_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-foreach ($lines as $line) {
-    if (strpos(trim($line), '#') === 0) {
-        continue;
-    }
-    list($name, $value) = explode('=', $line, 2);
-    $name = trim($name);
-    $value = trim($value);
 
-    if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
-        putenv(sprintf('%s=%s', $name, $value));
-        $_ENV[$name] = $value;
-        $_SERVER[$name] = $value;
-    }
+
+
+
+// Check if the token exists
+if(!isset(ACCESS_TOKENS[$request_token])) {
+    header('HTTP/1.0 401 Unauthorized');
+    echo("Invalid token");
+    exit;
 }
 
 
 
 
 // Check if the token is allowed to do the job
-if ($job_type == JOB_TYPE_DOWNLOAD) {
-    $job_allowed_tokens = explode(',', $_ENV[DOTENV_DOWNLOAD_TOKENS]);
-} else if ($job_type == JOB_TYPE_UPLOAD) {
-    $job_allowed_tokens = explode(',', $_ENV[DOTENV_UPLOAD_TOKENS]);
-} else {
-    $job_allowed_tokens = [];
-}
-
-if (!in_array($request_token, $job_allowed_tokens)) {
+$access_token = ACCESS_TOKENS[$request_token];
+if (!isset($access_token[$job_type])) {
     header('HTTP/1.0 401 Unauthorized');
-    echo("Invalid token");
+    echo("Invalid token job type");
     exit;
 }
 

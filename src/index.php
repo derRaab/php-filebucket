@@ -83,8 +83,8 @@ if(!isset(ACCESS_TOKENS[$request_token])) {
 
 
 // Check if the token is allowed to do the job
-$access_token = ACCESS_TOKENS[$request_token];
-if (!isset($access_token[$job_type])) {
+$access_token_settings = ACCESS_TOKENS[$request_token];
+if (!isset($access_token_settings[$job_type])) {
     header('HTTP/1.0 401 Unauthorized');
     echo("Invalid token job type");
     exit;

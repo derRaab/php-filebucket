@@ -9,6 +9,16 @@ include_once('constants.php');
 
 
 
+// Only allow https
+if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on") {
+    header('HTTP/1.0 400 Bad Request');
+    echo("HTTPS only");
+    exit;
+}
+
+
+
+
 // Check if a supported job type is set
 $job_type = $_POST[POST_JOB_TYPE];
 if($job_type != JOB_TYPE_DOWNLOAD && $job_type != JOB_TYPE_UPLOAD) {

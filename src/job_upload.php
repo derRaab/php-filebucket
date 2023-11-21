@@ -83,7 +83,7 @@ include_once('access.php');
 
 // Create a public token for the file
 $public_token = create_public_token($target_filename, PUBLIC_TOKEN_INJECT_STRING, PUBLIC_TOKEN_INJECT_POS);
-$public_url = "https://$_SERVER[HTTP_HOST]/download/$target_filename" . "?token=" . $public_token;
+$public_url = "https://$_SERVER[HTTP_HOST]/files/$target_filename" . "?download=" . $public_token;
 
 
 

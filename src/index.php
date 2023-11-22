@@ -19,6 +19,15 @@ if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on") {
 
 
 
+// If this is a direct file access to a download file, then redirect to the download token
+$request_url = parse_url("$_SERVER[REQUEST_URI]");
+if($request_url !== False && strpos($request_url['path'], JOB_TYPE_DOWNLOAD_PATHNAME) === 0) {
+    include('job_download_token.php');
+    exit;
+}
+
+
+
 // Check if a supported job type is set
 $job_type = $_POST[POST_JOB_TYPE];
 if($job_type != JOB_TYPE_DOWNLOAD && $job_type != JOB_TYPE_UPLOAD) {

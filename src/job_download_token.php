@@ -2,6 +2,8 @@
 
 // Constants
 include_once('constants.php');
+// Data utils
+include_once('data_utils.php');
 
 
 
@@ -20,8 +22,6 @@ if (strlen($filename) === 0 || !file_exists($file)) {
 
 // Access settings
 include_once('access.php');
-// Data utils
-include_once('data_utils.php');
 
 
 

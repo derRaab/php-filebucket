@@ -2,7 +2,7 @@
 
 // Access setup: token -> job_type -> extensions
 const ACCESS_TOKENS = [
-    'TOKEN_HERE' => [
+    'YOUR_TOKEN_HERE' => [
         'download' => [
             'extensions' => [ 'jpeg', "jpg", "png", "gif", "zip" ]
         ],

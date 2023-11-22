@@ -5,6 +5,7 @@ const DOTENV_DOWNLOAD_TOKENS = 'DOWNLOAD_TOKENS';
 const DOTENV_UPLOAD_TOKENS = 'UPLOAD_TOKENS';
 
 const JOB_TYPE_DOWNLOAD = 'download';
+const JOB_TYPE_DOWNLOAD_PATHNAME = '/files/';
 const JOB_TYPE_UPLOAD = 'upload';
 
 const POST_JOB_TYPE = 'job_type';

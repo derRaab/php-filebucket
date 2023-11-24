@@ -7,6 +7,10 @@ A very basic PHP and Apache based temporary file storage API.
 
 `git clone https://github.com/derRaab/php-filebucket`
 
+## Update
+
+`git fetch --all && git reset --hard origin/main`
+
 ## Setup
 
 - `/public` has to be configured as the public server root.

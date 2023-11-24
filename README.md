@@ -1,6 +1,6 @@
 # php-filebucket
 
-A very basic PHP and Apache based temporary file storage API.
+A very basic PHP and Apache based temporary file storage API. As of now, only the upload job is implemented and returns the download URL.
 
 
 ## Installation
